@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student List</title>
+    <style>
+      table {
+          width: 100%;
+          border-collapse: collapse;
+      }
+
+      table, th, td {
+          border: 1px solid black;
+      }
+
+      th, td {
+          padding: 8px;
+          text-align: left;
+      }
+
+      tr:nth-child(even) {
+          background-color: #f2f2f2;
+      }
+  </style>
+  </head>
+  <body>
+    <h1>Student List</h1>
+    <table>
+      <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Endereço</th>
+              <th>Data de nascimento</th> <!-- Nova coluna para botões de ação -->
+          </tr>
+      </thead>
+      <tbody>
+          {% for student in student_list %}
+          <tr>
+              <td>{{ student.name }}</td>
+              <td>{{ student.email }}</td>
+              <td>{{ student.address }}</td>
+              <td>{{ student.birthDate }}</td>
+              <td>
+                <a href="{}">Editar</a>
+            </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+  </body>
+</html>
