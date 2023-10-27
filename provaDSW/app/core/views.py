@@ -18,9 +18,9 @@ class ListStudent(TemplateView):
 
 class EditStudent(UpdateView):
     model = Student
-    fields = ['name', 'age', 'email']
+    fields = "__all__"
     template_name = 'edit_student.html'
-    success_url = reverse_lazy('list-students')
+    success_url = reverse_lazy('list_student')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -34,9 +34,9 @@ class StudentDetail(DetailView):
 
 class CreateStudent(CreateView):
     model = Student
-    fields = ['name', 'age', 'email', 'city', 'courses']
+    fields = '__all__'
     template_name = 'create_student.html'
-    success_url = reverse_lazy('list-students')
+    success_url = reverse_lazy('list_student')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -46,7 +46,7 @@ class CreateStudent(CreateView):
 class DeleteStudent(DeleteView):
     model = Student
     template_name = 'confirm_delete_student.html'
-    success_url = reverse_lazy('list-students')
+    success_url = reverse_lazy('list_student')
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Student removed successfully.')

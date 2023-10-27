@@ -18,7 +18,6 @@ class Course(models.Model):
 class Student(models.Model):
     name = models.CharField("Nome",max_length=100)
     email = models.EmailField("Email", max_length=100)
-
     address = models.CharField("Endereço",max_length=100)
     birthDate = models.DateField("Data de Nascimento")
     city = models.ForeignKey(City, on_delete=models.CASCADE)
