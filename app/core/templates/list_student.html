@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Student List</h1>
+      <div class="mb-3">
+        <a href="{% url 'create_student'  %}" class="btn btn-primary">Create student</a>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Data de nascimento</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in student_list %}
+          <tr>
+            <td>
+              <a href="{% url 'student_detail' student.pk %}">
+                {{ student.name }}
+              </a>
+            </td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.birthDate }}</td>
+            <td>
+              <a href="{% url 'edit_student' student.pk %}" class="btn btn-sm btn-primary mr-1">Editar</a>
+              <form action="{% url 'delete_student' student.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
